@@ -45,14 +45,13 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQloe_RpPAaiy-ukNxhasEgkK
   .then(response => response.text())
   .then(csv => {
     const rows = csv.trim().split("\n");
-    const count = rows.length - 1; // başlık satırını çıkar
+    const count = rows.length - 1;
     document.getElementById("responseCount").innerText = count;
   })
   .catch(() => {
     document.getElementById("responseCount").innerText = "0";
   });
 </script>
-``
 
 </body>
 </html>
