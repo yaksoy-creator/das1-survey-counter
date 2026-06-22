@@ -35,9 +35,7 @@
 <div class="counter-box">
   <h2>DAS I Student Survey</h2>
   <p><strong>25–26 DAS1 Student Survey Responses</strong></p>
-
   <div class="count" id="responseCount">Loading...</div>
-
   <p>Target: <strong>100 students</strong></p>
   <p>Thank you for your participation and honest feedback.</p>
 </div>
@@ -48,19 +46,18 @@ fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5
   .then(text => {
     const json = JSON.parse(text.substring(47).slice(0, -2));
     const rows = json.table.rows;
-
-    let value = null;
+    let value = 0;
     for (let i = 0; i < rows.length; i++) {
       if (rows[i].c[32] && rows[i].c[32].v !== null) {
         value = rows[i].c[32].v;
         break;
       }
     }
-
-    document.getElementById("responseCount").innerText = value ?? "0";
+    document.getElementById("responseCount").innerText = value;
   })
-  .catch(() => {
-    document.getElementById("responseCount").innerText = "—";
+  .catch(err => {
+    document.getElementById("responseCount").innerText = "ERR";
+    console.error(err);
   });
 </script>
 
