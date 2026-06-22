@@ -41,25 +41,18 @@
 </div>
 
 <script>
-fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5gfnLjL11eU/gviz/tq?sheet=form&tqx=out:json")
-  .then(res => res.text())
-  .then(text => {
-    const json = JSON.parse(text.substring(47).slice(0, -2));
-    const rows = json.table.rows;
-    let value = 0;
-    for (let i = 0; i < rows.length; i++) {
-      if (rows[i].c[32] && rows[i].c[32].v !== null) {
-        value = rows[i].c[32].v;
-        break;
-      }
-    }
-    document.getElementById("responseCount").innerText = value;
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQloe_RpPAaiy-ukNxhasEgkKymX546GYaRGnqgKfIaTO2OsCMXvmXuhjC7RuRt9MrL3GAhPlvYVtf/pub?output=csv")
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n");
+    const count = rows.length - 1; // başlık satırını çıkar
+    document.getElementById("responseCount").innerText = count;
   })
-  .catch(err => {
-    document.getElementById("responseCount").innerText = "ERR";
-    console.error(err);
+  .catch(() => {
+    document.getElementById("responseCount").innerText = "0";
   });
 </script>
+``
 
 </body>
 </html>
