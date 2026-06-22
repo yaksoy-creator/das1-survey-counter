@@ -29,6 +29,7 @@
   }
 </style>
 </head>
+
 <body>
 
 <div class="counter-box">
@@ -46,11 +47,9 @@ fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substring(47).slice(0, -2));
-
-    // AG sütunu = c[32]
     const rows = json.table.rows;
-    let value = null;
 
+    let value = null;
     for (let i = 0; i < rows.length; i++) {
       if (rows[i].c[32] && rows[i].c[32].v !== null) {
         value = rows[i].c[32].v;
@@ -64,7 +63,6 @@ fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5
     document.getElementById("responseCount").innerText = "—";
   });
 </script>
-
 
 </body>
 </html>
