@@ -42,7 +42,7 @@
 </div>
 
 <script>
-fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5gfnLjL11eU/gviz/tq?sheet=Yanıtlar&tqx=out:json")
+fetch("https://docs.google.com/spreadsheets/d/1qqJWb6MuJe2Q-ttUrVHd7TeCKYX8keqI5gfnLjL11eU/gviz/tq?sheet=Form%20Yan%C4%B1tlar%C4%B1%201&tqx=out:json")
   .then(res => res.text())
   .then(text => {
     const json = JSON.parse(text.substring(47).slice(0, -2));
